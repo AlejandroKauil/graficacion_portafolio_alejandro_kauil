@@ -1,0 +1,90 @@
+Unidad 2: Graficación 2D
+
+AA 2.1 TRANSFORMACIONES
+
+function setup() {
+  createCanvas(400, 400);
+  }
+  function draw(){
+  background(240);
+  
+  push();
+  translate(10, 100);
+  scale(1)
+  drawOso(222, 197, 158);
+  fill(255, 150, 180);
+  rotate(-0);
+  circle(10, 40, 7);
+  pop();
+  
+  push();
+  translate(60, 90);
+  scale(1.5);
+  drawOso(196, 163, 122);
+  fill(255, 0, 0);
+  rotate(-0);
+  triangle(5, 40, 0, 37, 5, 36);
+  triangle(17, 40, 20, 37, 15, 36);
+  circle(10, 38, 4);
+  pop();
+  
+  push();
+  translate(130, 80);
+  scale(2);
+  drawOso(168, 108, 57);
+  fill(30, 150, 255);
+  rotate(-0);
+  ellipse(15, 10, 20, 10);
+  rect(0, 9, 14, 5);
+  pop();
+
+  push();
+  translate(210, 70);
+  scale(2.5);
+  rotate(-0);
+  drawOso(110, 59, 22);
+  ellipse(5, 36, 6, 2);
+  ellipse(14, 36, 7, 2);
+  pop();
+
+  push();
+  translate(310, 60);
+  scale(3);
+  drawOso(149, 140, 135);
+  rotate(-0);
+  fill(244, 243, 241);
+  rotate(-0.15);
+  rect(10, 25, 5, 2);
+  rotate(0.15);
+  rect(1, 23, 5, 2);
+  fill(120, 70, 20);
+  rect(20, 35, 2, 20);
+  rect(14, 35, 5, 2);
+  pop();
+  
+  }
+
+  //Para el color de cada Oso
+  function drawOso(r,g,b){
+     fill (r,g,b);
+    
+  //orejas
+  ellipse(5, 15, 12, 12);
+  ellipse(25, 19, 12, 12);
+    
+  //Cabeza del los osos
+  ellipse(10, 30, 30, 30);
+    
+     //ojos de los osos
+    fill(0);
+  circle(4, 27, 4);
+  circle(16, 27, 4);
+    
+    //Hocico de los osos
+    fill(251, 236, 206);
+  circle(10, 35, 8);
+    
+    //Nariz de los osos
+    fill(0);
+  circle(10, 33, 4); 
+}
