@@ -88,3 +88,111 @@ function setup() {
     fill(0);
   circle(10, 33, 4); 
 }
+
+AA 2.2 PROYECTO
+
+  let img;
+  let FONDO;
+  let GirodelKamehameha = -0.8;
+  let GirodeRayos = 1.5;
+
+  //Nuestro lienzo se adapta
+  async function setup() {
+  createCanvas(windowWidth, windowHeight);
+  //usamos grados
+  angleMode(DEGREES);
+  //Agregamos la imagen de goku
+  img = await loadImage("GOKU_PNG.png");
+  //Agregamos la imagen de fondo
+  FONDO = await loadImage("FONDO.jpg");
+}
+
+  function draw() {
+  background(25);
+
+  if (FONDO) {
+  let escala = max(width / FONDO.width, height / FONDO.height);
+  let fondoAncho = FONDO.width * escala;
+  let fondoAlto = FONDO.height * escala;
+  image(FONDO, (width - fondoAncho) / 2, (height - fondoAlto) / 2, fondoAncho, fondoAlto);
+  }
+
+  //Goku flotand0 de abajo hacia arriba
+  let flotar = sin(frameCount * 1.5) * 12;
+    
+    //Interacción con el mouse (Mueve a goku)
+  let moverX = map(mouseX, 0, width, -25, 25);
+  let moverY = map(mouseY, 0, height, -15, 15);
+ 
+  let imgX = width / 2 - 350 / 2 + moverX;
+  let imgY = height / 2 - 350 / 2 + flotar + moverY;
+ 
+  if (img) {
+  image(img, imgX, imgY, 350, 350);
+  }
+  
+  //Centro de la pantalla (para el kamehameha)
+  let manoX = imgX + 350 * 0.60;
+  let manoY = imgY + 350 * 0.28;
+
+  //Disparo del kamehameha 
+  let recorrido = manoX + 100;
+  let disparo = (frameCount * 3) % recorrido;
+ 
+  //Si el mouse está presionado baja el frameRate
+  if (mouseIsPressed === true) {
+    frameRate(30);
+  } else {
+    frameRate(60);
+  }
+  
+  // EL KAMEHAMEHA
+  push();
+  
+  let suaveX = manoX + (mouseX - manoX) * 0.03;
+  let suaveY = manoY + (mouseY - manoY) * 0.010;
+  translate(manoX - disparo, manoY);
+
+  
+  //Hace que se vea la carga de energia
+  scale(1 + 0.1 * sin(frameCount * 5));
+
+    // Círculo de energía 
+  push();
+  noStroke();
+  fill(71, 246, 247);
+  ellipse(0, 0, 70, 70);
+ 
+  fill(255);
+  ellipse(0, 0, 40, 40);
+  pop(); 
+  
+  // rayos de energia cuando se esta formando el kamehameha
+  push();
+  //Hace que giren los rayos de energia
+  rotate(frameCount * GirodeRayos);
+  stroke(71, 246, 247);
+  strokeWeight(5);
+  push(); rotate(0);   line(40, 0, 90, 0); pop();
+  push(); rotate(30);  line(40, 0, 90, 0); pop();
+  push(); rotate(60);  line(40, 0, 90, 0); pop();
+  push(); rotate(90);  line(40, 0, 90, 0); pop();
+  push(); rotate(120); line(40, 0, 90, 0); pop();
+  push(); rotate(150); line(40, 0, 90, 0); pop();
+  push(); rotate(180); line(40, 0, 90, 0); pop();
+  push(); rotate(210); line(40, 0, 90, 0); pop();
+  push(); rotate(240); line(40, 0, 90, 0); pop();
+  push(); rotate(270); line(40, 0, 90, 0); pop();
+  push(); rotate(300); line(40, 0, 90, 0); pop();
+  push(); rotate(330); line(40, 0, 90, 0); pop();
+  pop();
+
+  // Cerramos el kamehameha
+  pop(); 
+    
+    // Modificación del cursor: +
+  cursor(CROSS);
+  }
+  function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  }
